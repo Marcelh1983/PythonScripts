@@ -7,11 +7,19 @@ import os
 import re
 import unicodedata
 import json
+import ntpath
+import html
+
+
 app = Flask(__name__)
 
+def path_leaf(path):
+    head, tail = ntpath.split(path)
+    return tail or ntpath.basename(head)
 
 def clean(s):
     if s is not None:
+        s = html.unescape(s)
         s = replaceTabSpacesNewLineBySpaces(s)
         s = replaceNewLineBySpaces(s)
         s = removeWeirdSpaces(s)
@@ -19,6 +27,16 @@ def clean(s):
         s = removeDoubleSpaces(s)
         s = s.strip()
         return s
+    return ''
+
+
+def get_end_clean(elem):
+    if elem is not None:
+        elem_name = elem.tag.replace('{http://www.imsglobal.org/xsd/imsqti_v2p1}', '')
+        if elem_name == 'img':
+            return path_leaf(elem.attrib['src'])
+        else:
+            return clean(elem.text)
 
 
 def removeDoubleSpaces(s):
@@ -101,14 +119,15 @@ def upload_packagefile():
                     if interactionType == 'MC':
                         alternatives = [{
                             u'id': choice.attrib['identifier'],
-                            u'text': ' '.join([clean(c_el.text) for c_el in choice.findall('.//*')])
+                            u'text': clean(' '.join([get_end_clean(c_el) for c_el in choice.findall('.//*')]))
                         } for choice in elem.findall('.//d:simpleChoice', item_ns)]
             else:
                 if elem.text is not None and not is_child_of(interactions, elem):
                     body = body + ' ' + clean(elem.text)
         body = clean(body)
-        res_e = [clean(cr_elem.text) for cr_elem in item.find('.//d:correctResponse', item_ns).findall('.//*')]
-        correct_response= '#'.join(res_e)
+        res_e = [get_end_clean(cr_elem) for cr_elem in item.find(
+            './/d:correctResponse', item_ns).findall('.//*')]
+        correct_response = '#'.join(res_e)
         items.append({
             'id': item.attrib['identifier'],
             'body': body,
@@ -117,7 +136,7 @@ def upload_packagefile():
             'correct_response': correct_response
         })
     # TODO : loop through items, remove xml-elements
-    response= make_response(json.dumps(
+    response = make_response(json.dumps(
         items, sort_keys=True, indent=4, separators=(',', ': ')))
     return response
 
