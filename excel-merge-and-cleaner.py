@@ -28,7 +28,7 @@ def removeDoubleSpaces(s):
     return re.sub(' +',' ',s)
 
 def replaceTabSpacesNewLineBySpaces(s):
-    return re.sub('\s+',' ',s)
+    return re.sub(r'\s+',' ',s)
 
 def replaceNewLineBySpaces(s):
     return s.replace('\n', ' ').replace('\r', '')
@@ -49,7 +49,7 @@ def removeInlineInteractionCrap(s):
 # removes inline Image crap
 def removeInlineImageCrapButKeepImage(s):
     inlineElementParameters = 10
-    imageFinder = re.compile('( ?.*\.(?:png|jpg))', re.I)
+    imageFinder = re.compile(r'( ?.*\.(?:png|jpg))', re.I)
     imageFinderStart = re.compile('(png|jpg)', re.I)
     while isFound(imageFinder.search(s)) and len(s[imageFinder.search(s).regs[0][0]:].split(' ')) > inlineElementParameters:
         s = s[:imageFinder.search(s).regs[0][1]] + ' '.join(s[imageFinder.search(s).regs[0][0]:].split(' ')[inlineElementParameters:])
