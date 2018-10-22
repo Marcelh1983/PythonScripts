@@ -9,6 +9,8 @@ import os
 import csv
 import json
 import pandas as pd
+import subprocess
+
 
 app = Flask(__name__)
 
@@ -93,8 +95,21 @@ def upload_packagefile():
             for choice in choice_items:
                 writer.writerow(choice.to_dict())
     itm_dict = [itm.to_dict() for itm in items]
-    response = make_response(json.dumps(
-        itm_dict, sort_keys=True, indent=4, separators=(',', ': ')))
+    # Define command and arguments
+    command = 'C:/Program Files/R/R-3.5.1/bin/Rscript'
+    args = '--vanilla'
+    path2script = 'RScript.R'
+    # Variable number of args in a list
+    args = ['muliple_choice_items.csv']
+    # Build subprocess command
+    cmd = [command, path2script] + args
+    # x = subprocess.check_output(cmd, universal_newlines=True)
+    x = subprocess.check_output(cmd, universal_newlines=True)
+
+    # print('Result from R script:' + x)
+    response = make_response(x)
+    # response = make_response(json.dumps(
+    #     itm_dict, sort_keys=True, indent=4, separators=(',', ': ')))
     return response
 
 
