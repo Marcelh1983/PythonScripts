@@ -5,10 +5,11 @@ import re
 import unicodedata
 
 # CONFIGURE THIS
-excel_folder = "C:/TMP/excelExports/*.xlsx"
-columns_to_clean = ['Body', 'Tekst en interacties', 'Vraag', 'Keuze (A)', \
-'Keuze (B)', 'Keuze (C)', 'Keuze (D)', 'Keuze (E)', 'Keuze (F)', 'Keuze (G)', \
-'Keuze (H)', 'Keuze (I)']
+excel_folder = "C:/TMP/TOM/*.xlsx"
+columns_to_clean = []
+# columns_to_clean = ['Body', 'Tekst en interacties', 'Vraag', 'Keuze (A)', \
+# 'Keuze (B)', 'Keuze (C)', 'Keuze (D)', 'Keuze (E)', 'Keuze (F)', 'Keuze (G)', \
+# 'Keuze (H)', 'Keuze (I)']
 new_excel_file_name = 'newExcel.xlsx'
 # END CONFIGURING
 
