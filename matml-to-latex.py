@@ -1,7 +1,7 @@
 import lxml.etree as ET
 import re
 import os
-
+# copied and modified from https://dev.to/furkan_kalkan1/quick-hack-converting-mathml-to-latex-159c
 def to_latex(text):
     """ Remove TeX codes in text"""
     text = re.sub(r"(\$\$.*?\$\$)", " ", text) 
