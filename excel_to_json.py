@@ -9,7 +9,8 @@ output_folder_name = 'C://TMP//'
 # output_file_nl = 'AnalyseModelBeeldverhaal_nl.json'
 # output_file_en = 'AnalyseModelBeeldverhaal_en.json'
 
-excel_file = 'C://tmp//filters_2.xlsx'
+# excel_file = 'C://repos//woordmars//apps//functions//items.xlsx'
+excel_file = 'C://repos//woordmars//apps//functions//woorden_anker.xlsx'
 # excel_file_en = 'C://repos//beeldverhaal-web//frontend-teacher//tour_EN.xlsx'
 
 
