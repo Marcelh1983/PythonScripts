@@ -1,6 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\marcelh\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.pythonPath": "C:\\Users\\marcelh\\Anaconda3\\python.exe",
     "python.linting.pylintEnabled": true,
-    "python.jediEnabled": false,
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Default"
 }

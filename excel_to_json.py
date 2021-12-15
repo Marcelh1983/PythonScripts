@@ -1,20 +1,19 @@
-
-import excel2json
-import pandas as pd
-from googletrans import Translator
-import os
-from api.convert import convert_from_file
+from excel2json import convert_from_file
+# import pandas as pd
+# from googletrans import Translator
+# import os
+# from api.convert import convert_from_file
 
 output_folder_name = 'C://TMP//'
 # output_file_nl = 'AnalyseModelBeeldverhaal_nl.json'
 # output_file_en = 'AnalyseModelBeeldverhaal_en.json'
 
 # excel_file = 'C://repos//woordmars//apps//functions//items.xlsx'
-excel_file = 'C://repos//woordmars//apps//functions//woorden_anker.xlsx'
+excel_file = 'C://TMP//beeldverhaal_import_file.xlsx'
 # excel_file_en = 'C://repos//beeldverhaal-web//frontend-teacher//tour_EN.xlsx'
 
 
-excel2json.convert_from_file(excel_file, output_folder_name)
+convert_from_file(excel_file, output_folder_name)
 # read from an excel file
 # df = pd.read_excel(excel_file)
 
