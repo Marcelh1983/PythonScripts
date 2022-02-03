@@ -1,5 +1,6 @@
 {
     "python.pythonPath": "C:\\Users\\marcelh\\Anaconda3\\python.exe",
     "python.linting.pylintEnabled": true,
-    "python.languageServer": "Default"
+    "python.languageServer": "Pylance",
+    "python.linting.pylintArgs": ["--disable=C0111"]
 }

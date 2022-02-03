@@ -4,7 +4,7 @@ from excel2json import convert_from_file
 # import os
 # from api.convert import convert_from_file
 
-output_folder_name = 'C://TMP//'
+output_folder_name = 'c://tmp//'
 # output_file_nl = 'AnalyseModelBeeldverhaal_nl.json'
 # output_file_en = 'AnalyseModelBeeldverhaal_en.json'
 
