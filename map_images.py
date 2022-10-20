@@ -27,6 +27,7 @@ def start():
         file_name = row['filename']
         if (file_name in files):
             hashes.append(row['hash'])
+            row['shutterstock_filename'] = ''
             rows.append(row)
     # now check for double images
     double_items = []
@@ -35,6 +36,7 @@ def start():
         hash = row['hash']
         for new_row in rows:
             if new_row['hash']== hash and not org_location ==  new_row['org_location']:
+                row.shutterstock_filename = ''
                 double_items.append(row)
 
     # find correspondin item
@@ -68,12 +70,14 @@ def start():
                 aspect = f"{a:.2f}"
                 row.hash = get_hash(shutterstock_info.location)
                 row.aspect = aspect
-                row.shutterstock_aspect = aspect_shutterstock
+                row['shutterstock_filename'] = os.path.basename(shutterstock_info.location)
+                row['shutterstock_aspect'] = aspect_shutterstock
         browser.close()
     for double_item in double_items:
+        double_item['shutterstock_filename'] = ''
         rows.append(double_item)
 
     new_df = pd.DataFrame(rows)
     new_df.to_csv(os.path.join(input_folder, 'images_shutterstock.csv'), ";")
 
-# start()
+start()
